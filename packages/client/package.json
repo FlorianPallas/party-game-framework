@@ -1,0 +1,21 @@
+{
+  "name": "@party-game-framework/client",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@party-game-framework/common": "workspace:*",
+    "rxjs": "^7.8.1",
+    "solid-js": "^1.8.5",
+    "@sinclair/typebox": "^0.31.28"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-solid": "^2.7.2"
+  }
+}

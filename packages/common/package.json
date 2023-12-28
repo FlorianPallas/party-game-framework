@@ -1,0 +1,13 @@
+{
+  "name": "@party-game-framework/common",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@sinclair/typebox": "^0.31.28",
+    "rxjs": "^7.8.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.7"
+  }
+}

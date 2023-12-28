@@ -1,0 +1,10 @@
+{
+  "name": "party-game-framework",
+  "version": "1.0.0",
+  "author": "Florian Pallas",
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.3",
+    "prettier": "^3.1.1"
+  }
+}

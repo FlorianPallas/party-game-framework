@@ -1,0 +1,20 @@
+{
+  "name": "@party-game-framework/gateway",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon --watch src --exec \"ts-node src/index.ts\" --ext ts,json"
+  },
+  "dependencies": {
+    "@party-game-framework/common": "workspace:*",
+    "@sinclair/typebox": "^0.31.28",
+    "rxjs": "^7.8.1",
+    "uuid": "^9.0.1",
+    "ws": "^8.15.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.5.10",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
+  }
+}
