@@ -6,7 +6,7 @@ import {
   Message,
   ProtocolHeader,
   Stream,
-  ActionResponse,
+  StreamResponse,
 } from "@party-game-framework/common";
 import { WebSocketStream } from "./stream";
 import { v4 as uuid } from "uuid";
@@ -74,7 +74,7 @@ wss.on("connection", (ws) => {
         };
         rooms.push(room);
 
-        return ActionResponse.Ok({
+        return StreamResponse.Ok({
           room: {
             code: room.code,
             protocol: room.protocol,
@@ -87,21 +87,21 @@ wss.on("connection", (ws) => {
 
         const room = findRoomByCode(body.code);
         if (!room) {
-          return ActionResponse.Custom("room-not-found");
+          return StreamResponse.Custom("room-not-found");
         }
 
         const name = body.name.trim().toUpperCase();
 
         if (room.players.has(peer.id)) {
-          return ActionResponse.Custom("already-in-room");
+          return StreamResponse.Custom("already-in-room");
         }
 
         if (name.length < 1) {
-          return ActionResponse.Custom("name-is-invalid");
+          return StreamResponse.Custom("name-is-invalid");
         }
 
         if ([...room.players.values()].includes(name)) {
-          return ActionResponse.Custom("name-is-taken");
+          return StreamResponse.Custom("name-is-taken");
         }
 
         room.players.set(self.id, name);
@@ -109,7 +109,7 @@ wss.on("connection", (ws) => {
           peer.client.sendEvent("$onPlayerJoined", { name })
         );
 
-        return ActionResponse.Ok({
+        return StreamResponse.Ok({
           room: {
             code: room.code,
             protocol: room.protocol,
@@ -122,11 +122,11 @@ wss.on("connection", (ws) => {
 
         const room = findRoomByPeerId(self.id);
         if (!room) {
-          return ActionResponse.Custom("room-not-found");
+          return StreamResponse.Custom("room-not-found");
         }
 
         if (room.authorityId !== self.id) {
-          return ActionResponse.Custom("not-authority");
+          return StreamResponse.Custom("not-authority");
         }
 
         room.protocol = body;
@@ -134,7 +134,7 @@ wss.on("connection", (ws) => {
           peer.client.sendEvent("$onProtocolChange", body)
         );
 
-        return ActionResponse.Ok();
+        return StreamResponse.Ok();
       },
     },
     eventHandlers: {},
