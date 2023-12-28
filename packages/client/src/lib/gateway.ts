@@ -9,6 +9,7 @@ import { createSignal, createMemo, onMount, onCleanup } from "solid-js";
 import { WebSocketStream } from "./stream";
 
 export const createGateway = (defaultUrl?: string) => {
+  const [isAuthority, setIsAuthority] = createSignal(false);
   const [url, setUrl] = createSignal(defaultUrl);
   const [room, setRoom] = createSignal<Room>();
 
@@ -89,6 +90,7 @@ export const createGateway = (defaultUrl?: string) => {
       return;
     }
     setRoom(response.room);
+    setIsAuthority(true);
   };
 
   const join = async (roomCode: string, name: string) => {
@@ -103,6 +105,14 @@ export const createGateway = (defaultUrl?: string) => {
     setRoom(response.room);
   };
 
-  return { stream, url, setUrl: setUrlPersist, openRoom, join, room };
+  return {
+    stream,
+    url,
+    setUrl: setUrlPersist,
+    openRoom,
+    join,
+    room,
+    isAuthority,
+  };
 };
 export type Gateway = ReturnType<typeof createGateway>;
