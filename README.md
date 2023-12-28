@@ -23,8 +23,8 @@ pnpm install
 ### Running
 
 ```bash
-# Start the lobby server
-cd packages/lobby
+# Start the gateway server
+cd packages/gateway
 pnpm dev
 ```
 
@@ -34,10 +34,8 @@ cd packages/client
 pnpm dev
 ```
 
-### Fundamentals
+### Modules
 
-#### Communication
-
-To create or join a game clients need to find each other. This is done by connecting to a known lobby server. The lobby server is a WebSocket server that keeps track of all the clients that are connected to it and manages them in rooms. The lobby server does not know anything about the game itself, it only knows about the clients that are connected to it and handles the communication between them.
-
-The games themselves follow a client-server model. The server is the host of the game and the clients are the players. The server is responsible for creating the room via the lobby server and for managing the game state. The clients are responsible for sending user input to the server and for rendering the game state.
+- [gateway](packages/gateway) - Gateway server
+- [client](packages/client) - Client
+- [common](packages/common) - Common code
